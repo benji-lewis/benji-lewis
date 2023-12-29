@@ -54,7 +54,9 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_dir: site
-          destination_repo: benjisoft/benjisoft.github.io
-          destination_branch: master
-          user_email: action@github.com
+          source-files: site
+          destination-username: benjisoft
+          destination-repository: benjisoft.github.io
+          destination-branch: main
+          commit-username: "GitHub Actions [Bot]"
+          commit-email: action@github.com
