@@ -12,6 +12,7 @@ jobs:
       pages: write
       contents: write
     steps:
+      - uses: actions/checkout@v2
       - name: Converts Markdown to HTML
         uses: jaywcjlove/markdown-to-html-cli@main
         with:
@@ -19,3 +20,21 @@ jobs:
           output: index.html
           github-corners: https://github.com/benjisoft/benjisoft
           favicon: data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>
+      - name: Commit files
+        id: commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+          git add --all
+          if [-z "$(git status --porcelain)"]; then
+              echo "::set-output name=push::false"
+          else
+              git commit -m "Add changes" -a
+              echo "::set-output name=push::true"
+          fi
+        shell: bash
+      - name: Push changes
+        if: steps.commit.outputs.push == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
