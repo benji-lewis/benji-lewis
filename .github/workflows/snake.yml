@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pages: write
+      contents: write
     steps:
       # Snake Animation
       - uses: Platane/snk/svg-only@v3
