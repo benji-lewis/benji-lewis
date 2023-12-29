@@ -22,13 +22,13 @@ jobs:
         id: snake-gif
         with:
           github_user_name: benjisoft
-          outputs: "site/dist/github-contribution-grid-snake.svg"
+          outputs: "docs/dist/github-contribution-grid-snake.svg"
       # Markdown to HTML
       - name: Converts Markdown to HTML
         uses: jaywcjlove/markdown-to-html-cli@main
         with:
           source: README.md
-          output: site/index.html
+          output: docs/index.html
           github-corners: https://github.com/benjisoft/benjisoft
           favicon: data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>
       - name: Commit files
@@ -54,7 +54,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-files: site
+          source-files: docs
           destination-username: benjisoft
           destination-repository: benjisoft.github.io
           destination-branch: main
