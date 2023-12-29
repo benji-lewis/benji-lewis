@@ -38,10 +38,10 @@ jobs:
           git config --local user.name "GitHub Actions"
           git add --all
           if [-z "$(git status --porcelain)"]; then
-              echo "No Updates to push"
+              echo "::set-output name=push::false"
           else
               git commit -m "Add changes" -a
-          echo "::set-output name=push::true"
+              echo "::set-output name=push::true"
           fi
         shell: bash
       - name: Push changes
