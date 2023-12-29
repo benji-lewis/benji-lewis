@@ -49,3 +49,12 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to root site
+        uses: nkoppel/push-files-to-another-repository@1.1.0
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source_dir: site
+          destination_repo: benjisoft/benjisoft.github.io
+          destination_branch: master
+          user_email: action@github.com
