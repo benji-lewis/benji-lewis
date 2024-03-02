@@ -94,7 +94,7 @@ Cross-platform support to shutdown a computer from Node.js
 ## Contact
 For business enquiries, feel free to reach out to me at VisiMedia on <a href="tel:+441183702920">0118 370 2920</a> or [contact@visimedia.co.uk](mailto:contact@visimedia.co.uk). 
 
-Alternatively, feel free to reach out via [GitHub](https://github.com/benjisoft) or [LinkedIn](https://linkedin.com/in/benji-lewis)
+Alternatively, feel free to reach out via [GitHub](https://github.com/benjisoft), <a rel="me" href="https://mastodonapp.uk/@yupbenji">Mastodon</a> or [LinkedIn](https://linkedin.com/in/benji-lewis)
 
 ---
 
