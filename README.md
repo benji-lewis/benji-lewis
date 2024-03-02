@@ -51,6 +51,18 @@ Windows application to enable modern "telegrams" between two thermal printers.
 
 ---
 
+## 📦 NPM Modules I've made
+### <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="20" alt="typescript logo"  /> [Part of Day](https://www.npmjs.com/package/@visimedia/part-of-day) - MIT
+A simple TS compatible library that returns either morning, afternoon or evening dependent on a given EPOCH time.
+
+### <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="20" alt="typescript logo"  /> [Random XKCD](https://www.npmjs.com/package/@visimedia/random-xkcd) - MIT
+Fetches a random XKCD comic and returns the URL.
+
+### <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="20" alt="javascript logo"  /> [System Shutdown](https://www.npmjs.com/package/@visimedia/system-shutdown) - MIT
+Cross-platform support to shutdown a computer from Node.js
+
+---
+
 ## 💻 Tech Stack:
 
 <div align="left">
@@ -73,6 +85,8 @@ Windows application to enable modern "telegrams" between two thermal printers.
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" height="40" width="52" alt="nextjs logo"  />
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" height="40" width="52" alt="npm logo"  />
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" height="40" width="52" alt="nodejs logo"  />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height="40" width="52" alt="mongodb logo"  />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" height="40" width="52" alt="express logo"  />
 </div>
 
 ---
