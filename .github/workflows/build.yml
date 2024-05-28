@@ -40,7 +40,7 @@ jobs:
       - name: Commit files
         id: commit
         run: |
-          echo "$(date +'%Y-%m-%d')" >> testing.txt
+          echo "$(date +'%Y-%m-%d')" >> runlog.md
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Actions"
           git add --all
