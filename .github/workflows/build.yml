@@ -3,12 +3,16 @@ name: Build GH Pages
 on:
   schedule: # execute every 12 hours
     - cron: "0 */3 * * *"
-  workflow_dispatch:
+  workflow_dispatch: {}
   push:
     branches: [ main ]
 
 jobs:
   build:
+    - name: Pull latest changes
+      run: git pull origin main
+      shell: bash
+
     name: Generating and saving snake SVG
     runs-on: ubuntu-latest
     permissions:
@@ -17,12 +21,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       # Snake Animation
       - uses: Platane/snk/svg-only@v3
         id: snake-gif
         with:
           github_user_name: benjisoft
           outputs: "docs/dist/github-contribution-grid-snake.svg"
+
       # Markdown to HTML
       - name: Converts Markdown to HTML
         uses: jaywcjlove/markdown-to-html-cli@main
@@ -31,24 +37,28 @@ jobs:
           output: docs/index.html
           github-corners: https://github.com/benjisoft/benjisoft
           favicon: data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>
+
       - name: Commit files
         id: commit
         run: |
-          git pull
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Actions"
-          if [ -z "$(git status --porcelain)" ]; then
-              echo "::set-output name=push::true"
+          git add --all
+          if git diff-index --quiet HEAD --; then
+            echo "No changes to commit."
+            echo "push=false" >> $GITHUB_ENV
           else
-              git commit -a -m "Converted markdown to HTML and updated snake SVG. \nAction completed automatically. \n>\n>\n Co-authored-by: Ben Lewis <oss@benjilewis.dev>"
-              echo "::set-output name=push::true"
+            git commit -m "Converted markdown to HTML and updated snake SVG. \nAction completed automatically. \n\nCo-authored-by: Ben Lewis <oss@benjilewis.dev>" -a
+            echo "push=true" >> $GITHUB_ENV
           fi
         shell: bash
+
       - name: Push changes
-        if: steps.commit.outputs.push == 'true'
+        if: env.push == 'true'
         uses: ad-m/github-push-action@master
         with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Deploy to root site
         uses: nkoppel/push-files-to-another-repository@v1.1.2
         env:
