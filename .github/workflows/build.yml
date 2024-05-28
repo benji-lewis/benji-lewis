@@ -37,11 +37,14 @@ jobs:
           git pull
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Actions"
-          git add --all
           if [ -z "$(git status --porcelain)" ]; then
               echo "::set-output name=push::true"
           else
-              git commit -m "Add changes" -a
+              git commit -a -m "git commit -m "Converted markdown to HTML and updated snake SVG. 
+Action completed automatically. 
+>
+>
+Co-authored-by: Ben Lewis <oss@benjilewis.dev>"
               echo "::set-output name=push::true"
           fi
         shell: bash
