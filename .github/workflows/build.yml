@@ -48,7 +48,7 @@ jobs:
             echo "No changes to commit."
             echo "push=false" >> $GITHUB_ENV
           else
-            git commit -a -m "Converted markdown to HTML and updated snake SVG." -m "Action completed automatically." -m ">" -m ">" -m "> Co-authored-by: Ben Lewis <oss@benjilewis.dev>"
+            git commit -a -m "Converted markdown to HTML and updated snake SVG." -m "Action completed automatically." -m ">" -m ">" -m "Co-authored-by: Ben Lewis <oss@benjilewis.dev>"
             echo "push=true" >> $GITHUB_ENV
           fi
         shell: bash
