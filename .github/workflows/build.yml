@@ -9,10 +9,6 @@ on:
 
 jobs:
   build:
-    - name: Pull latest changes
-      run: git pull origin main
-      shell: bash
-
     name: Generating and saving snake SVG
     runs-on: ubuntu-latest
     permissions:
@@ -21,6 +17,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Pull latest changes
+        run: git pull origin main
+        shell: bash
 
       # Snake Animation
       - uses: Platane/snk/svg-only@v3
