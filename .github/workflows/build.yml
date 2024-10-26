@@ -1,8 +1,8 @@
 name: Build GH Pages
 
 on:
-  schedule: # execute every 12 hours
-    - cron: "0 */3 * * *"
+  schedule:
+    - cron: "0 */12 * * *" # every 12 hours
   workflow_dispatch: {}
   push:
     branches: [ main ]
@@ -20,6 +20,10 @@ jobs:
       - name: Pull latest changes
         run: git pull origin main
         shell: bash
+
+      # Ensure docs directory exists
+      - name: Create docs directory
+        run: mkdir -p docs/dist
 
       # Snake Animation
       - uses: Platane/snk/svg-only@v3
@@ -53,20 +57,16 @@ jobs:
           fi
         shell: bash
 
-      - name: Push changes
-        if: env.push == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Deploy to root site
-        uses: nkoppel/push-files-to-another-repository@v1.1.2
+      - name: Push changes to README repo
+        if: ${{ env.push == 'true' }}
+        run: |
+          git push origin main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-files: docs
-          destination-username: benjisoft
-          destination-repository: benjisoft.github.io
-          destination-branch: main
-          commit-username: "GitHub Actions [Bot]"
-          commit-email: action@github.com
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push changes to GitHub Pages repo
+        if: ${{ env.push == 'true' }}
+        run: |
+          git push https://github.com/benji-lewis/benjisoft.github.io.git main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
